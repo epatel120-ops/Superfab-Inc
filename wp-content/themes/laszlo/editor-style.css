@@ -1,0 +1,8 @@
+.naapo-admin-table-inline{ display: table; }
+.naapo-admin-table-inline tr,
+.naapo-admin-table-inline td{ display: table-cell; }
+
+.naapo-admin-table-inline td span{ font-size: 12px; }
+
+.naapo-admin-helper-wrap,
+.naapo-admin-helper-wrap *{ display: none; }

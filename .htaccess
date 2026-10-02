@@ -1,0 +1,46 @@
+DirectoryIndex index.html
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+
+# ----------------------------------------
+# 1. Redirect /index.html to /
+# ----------------------------------------
+RewriteCond %{THE_REQUEST} \s/+index\.html(?:[\s?]|$) [NC]
+RewriteRule ^index\.html$ / [R=301,L]
+
+# ----------------------------------------
+# 2. Redirect /folder/index.html to /folder
+# ----------------------------------------
+RewriteCond %{THE_REQUEST} \s/+([A-Za-z0-9_-]+)/index\.html(?:[\s?]|$) [NC]
+RewriteRule ^([A-Za-z0-9_-]+)/index\.html$ /$1 [R=301,L]
+
+# ----------------------------------------
+# 3. Redirect .html URLs to extensionless URLs
+# Example:
+# /gi-perforated-cable-trays.html
+# ->
+# /gi-perforated-cable-trays
+# ----------------------------------------
+RewriteCond %{THE_REQUEST} \s/+([A-Za-z0-9_-]+)\.html(?:[\s?]|$) [NC]
+RewriteRule ^([A-Za-z0-9_-]+)\.html$ /$1 [R=301,L]
+
+# ----------------------------------------
+# 4. Do NOT rewrite real files/folders
+# CSS, JS, images, PHP, PDFs, etc.
+# ----------------------------------------
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# ----------------------------------------
+# 5. Internally load .html file
+# /gi-perforated-cable-trays
+# ->
+# /gi-perforated-cable-trays.html
+# ----------------------------------------
+RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+RewriteRule ^([A-Za-z0-9_-]+)$ $1.html [L]
+
+</IfModule>

@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+Disallow: /wp-admin/
+Disallow: /wp-includes/
+Disallow: /wp-json/
+Disallow: /wp-content/plugins/
+Disallow: /wp-content/mu-plugins/
+Disallow: /cdn-cgi/
+Disallow: /xmlrpc.php
+
+Sitemap: https://superfabinc.com/sitemap.xml
